@@ -1,12 +1,14 @@
-NAME = push_swap
+NAME = so_long
 NAME_B = checker
 
 SRCS =	mandatory/parsing.c\
 		mandatory/main.c\
+		mandatory/get_next_line.c\
+		mandatory/get_next_line_utils.c
 
 SRCS_B =	
 
-HEADER = mandatory/push_swap.h
+HEADER = mandatory/so_long.h
 HEADER_B = bonus/push_swap_bonus.h
 
 OBJ = $(patsubst %.c, %.o, $(SRCS))

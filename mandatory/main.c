@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:45:47 by mac               #+#    #+#             */
-/*   Updated: 2023/06/28 18:53:13 by mac              ###   ########.fr       */
+/*   Updated: 2023/07/01 17:08:14 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ void	error(void)
 
 int	main()
 {
-	t_list	**stack;
-
-	(*stack)->wall = 0;
-	(*stack)->exit = 0;
-	(*stack)->player = 0;
-	(*stack)->item = 0;
-	(*stack)->coll = 0;
-    gnl(stack);
+	t_list	stack;
+	
+	stack.coll = 0;
+	stack.exit = 0;
+	stack.item = 0;
+	stack.player = 0;
+	stack.score = 0;
+	if (gnl(&stack))
+		printf("OK\n");
+	return (0);
 }
