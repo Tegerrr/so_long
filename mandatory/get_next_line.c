@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:28:41 by timelkon          #+#    #+#             */
-/*   Updated: 2023/04/24 19:39:50 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:25:31 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ char	*get_next_line(int fd)
 		free(nine);
 		return (NULL);
 	}	
-	line = ft_substr(line, 0, llen(line) + 1);
+	line = ft_substr_free(line, 0, llen(line) + 1);
 	return (line);
 }

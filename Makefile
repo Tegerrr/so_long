@@ -4,7 +4,9 @@ NAME_B = checker
 SRCS =	mandatory/parsing.c\
 		mandatory/main.c\
 		mandatory/get_next_line.c\
-		mandatory/get_next_line_utils.c
+		mandatory/get_next_line_utils.c\
+		mandatory/utils.c\
+		mandatory/split.c
 
 SRCS_B =	
 

@@ -6,69 +6,78 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:03:40 by mac               #+#    #+#             */
-/*   Updated: 2023/07/01 17:05:44 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:49:11 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	val(char **str, int i)
-{
-	int	j;
-
-	j = 0;
-	if (i == 0 || str[i+1] == NULL)
-	{
-		while (str[i][j])
-		{
-			if (str[i][j] != '1')
-				return (0);
-			j++;
-		}
-	}
-	return (1);
-}
-
-void	parsing(t_list *stack)
+void	check_w(char *str)
 {
 	int	i;
-	int	j;
-
+	
 	i = -1;
+	while (str[++i])
+	{
+		if (str[i] != '1')
+			error();
+	}
+}
+
+void	val(t_list *stack, int i, int j)
+{
 	while (stack->mapdata[++i])
 	{
 		j = -1;
 		while (stack->mapdata[i][++j])
 		{
-			if (stack->mapdata[i][j] != '1' && (j == 0 
-				|| stack->mapdata[i][j+1] == '\0') 
-					&& val(stack->mapdata, i))
+			if (i != 0 && ft_strlen(stack->mapdata[i]) != ft_strlen(stack->mapdata[i-1]))
 				error();
+			if ((j == 0 || stack->mapdata[i][j+1] == '\0')
+				&& stack->mapdata[i][j] != '1')
+				error();
+			if (i == 0 || stack->mapdata[i+1] == NULL)
+				check_w(stack->mapdata[i]);
 			if (stack->mapdata[i][j] == 'P')
 				stack->player++;
-			if (stack->mapdata[i][j] == 'E')
-				stack->exit++;
 			if (stack->mapdata[i][j] == 'C')
 				stack->coll++;
+			if (stack->mapdata[i][j] == 'E')
+				stack->exit++;
 		}
 	}
+	stack->widths = ft_strlen(stack->mapdata[0]);
+	if (stack->player != 1 || stack->coll < 1 || stack->exit != 1 || stack->height >= stack->widths)
+		error();
 }
 
-int	gnl(t_list *stack)
+int	gnl (t_list *stack)
 {
+	char	*joined;
+	char	*temp;
+	char	*gn;
 	int		fdmap;
-	int		i;
 
-	i = 0;
 	fdmap = open("mandatory/map.ber", O_RDONLY);
 	if (fdmap == -1)
 		error();
-	stack->mapdata[i] = get_next_line(fdmap);
-	while (stack->mapdata[i])
+	joined = ft_strdup(get_next_line(fdmap));
+	if (!joined)
+		error();
+	gn = get_next_line(fdmap);
+	while (gn)
 	{
-		i++;
-		stack->mapdata[i] = get_next_line(fdmap);
+		if (gn[0] == '\n')
+			error();
+		temp = ft_strjoin(joined, "\n");
+		free(joined);
+		joined = ft_strjoin(temp, gn);
+		free(temp);
+		stack->height++;
+		gn = get_next_line(fdmap);
 	}
-	parsing(stack);
+	stack->mapdata = ft_split(joined, '\n');
+	free(joined);
+	val(stack, -1, -1);
 	return (1);
 }

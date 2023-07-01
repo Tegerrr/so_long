@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:45:47 by mac               #+#    #+#             */
-/*   Updated: 2023/07/01 17:08:14 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/01 20:35:46 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main()
 	stack.item = 0;
 	stack.player = 0;
 	stack.score = 0;
+	stack.height = 1;
 	if (gnl(&stack))
 		printf("OK\n");
 	return (0);

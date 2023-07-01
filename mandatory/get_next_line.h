@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/02/24 13:52:22 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:25:40 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 char	*ft_strjoin_nl(char *str1, char *str2);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
-char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_substr_free(char *s, unsigned int start, size_t len);
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 void	*ft_calloc(size_t count, size_t size);

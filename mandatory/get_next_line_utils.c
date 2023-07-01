@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:40:00 by timelkon          #+#    #+#             */
-/*   Updated: 2023/02/24 11:51:55 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:24:53 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ size_t	ft_strlen(const char *str)
 	return (a);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr_free(char *s, unsigned int start, size_t len)
 
 {
 	char	*spc;

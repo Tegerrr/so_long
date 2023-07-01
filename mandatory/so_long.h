@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:46:23 by mac               #+#    #+#             */
-/*   Updated: 2023/06/29 21:30:33 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:11:05 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,8 @@ typedef struct s_list
 
 int		gnl(t_list *stack);
 void	error(void);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	**ft_split(char const *s1, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
