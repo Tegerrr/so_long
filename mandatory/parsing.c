@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:03:40 by mac               #+#    #+#             */
-/*   Updated: 2023/07/01 22:49:11 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:37:30 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,35 @@ void	val(t_list *stack, int i, int j)
 			if (i == 0 || stack->mapdata[i+1] == NULL)
 				check_w(stack->mapdata[i]);
 			if (stack->mapdata[i][j] == 'P')
+			{
 				stack->player++;
+				stack->ppos_y = j;
+				stack->ppos_x = i;
+			}
 			if (stack->mapdata[i][j] == 'C')
 				stack->coll++;
 			if (stack->mapdata[i][j] == 'E')
 				stack->exit++;
+			if (stack->mapdata[i][j] != 'E' && stack->mapdata[i][j] != 'P'
+				&& stack->mapdata[i][j] != 'C' && stack->mapdata[i][j] != '0'
+					&& stack->mapdata[i][j] != '1')
+					error();
 		}
 	}
 	stack->widths = ft_strlen(stack->mapdata[0]);
 	if (stack->player != 1 || stack->coll < 1 || stack->exit != 1 || stack->height >= stack->widths)
 		error();
+	flood_fill(stack, stack->mapdata, stack->ppos_x, stack->ppos_y);
 }
 
-int	gnl (t_list *stack)
+int	gnl (t_list *stack, char **argv)
 {
 	char	*joined;
 	char	*temp;
 	char	*gn;
 	int		fdmap;
 
-	fdmap = open("mandatory/map.ber", O_RDONLY);
+	fdmap = open(argv[1], O_RDONLY);
 	if (fdmap == -1)
 		error();
 	joined = ft_strdup(get_next_line(fdmap));

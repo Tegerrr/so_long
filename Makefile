@@ -6,7 +6,8 @@ SRCS =	mandatory/parsing.c\
 		mandatory/get_next_line.c\
 		mandatory/get_next_line_utils.c\
 		mandatory/utils.c\
-		mandatory/split.c
+		mandatory/split.c\
+		mandatory/flood_fill.c
 
 SRCS_B =	
 
@@ -18,12 +19,12 @@ OBJ_B = $(patsubst %.c, %.o, $(SRCS_B))
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g -Imlx
-
+CFLAGS = -Wall -Wextra -Werror -g -I mlx
+MLXFLAG = -L /usr/local/bin -Lmandatory/mlx -lmlx -framework OpenGL -framework AppKit
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(HEADER)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAG) $(OBJ) -o $(NAME)
 
 %.o : %.c $(HEADER)
 	$(CC) $(CFLAGS) -o $@ -c $<

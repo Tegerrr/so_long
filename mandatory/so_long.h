@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:46:23 by mac               #+#    #+#             */
-/*   Updated: 2023/07/01 22:11:05 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:08:32 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include "get_next_line.h"
-# include "minilibx_opengl_20191021/mlx.h"
+# include "mlx/mlx.h"
 
 typedef struct s_list
 {
@@ -38,10 +38,13 @@ typedef struct s_list
 	int		gameover;
 }	t_list;
 
-int		gnl(t_list *stack);
+int		gnl (t_list *stack, char **argv);
 void	error(void);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s1, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	flood_fill(t_list *stack, char **tab, int x, int y);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	go_game(void *mlx);
 
 #endif
