@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:03:40 by mac               #+#    #+#             */
-/*   Updated: 2023/07/03 18:37:30 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:23:17 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	val(t_list *stack, int i, int j)
 		while (stack->mapdata[i][++j])
 		{
 			if (i != 0 && ft_strlen(stack->mapdata[i]) != ft_strlen(stack->mapdata[i-1]))
-				error();
+				no_map_error();
 			if ((j == 0 || stack->mapdata[i][j+1] == '\0')
 				&& stack->mapdata[i][j] != '1')
-				error();
+				no_map_error();
 			if (i == 0 || stack->mapdata[i+1] == NULL)
 				check_w(stack->mapdata[i]);
 			if (stack->mapdata[i][j] == 'P')
@@ -51,12 +51,12 @@ void	val(t_list *stack, int i, int j)
 			if (stack->mapdata[i][j] != 'E' && stack->mapdata[i][j] != 'P'
 				&& stack->mapdata[i][j] != 'C' && stack->mapdata[i][j] != '0'
 					&& stack->mapdata[i][j] != '1')
-					error();
+					no_map_error();
 		}
 	}
 	stack->widths = ft_strlen(stack->mapdata[0]);
 	if (stack->player != 1 || stack->coll < 1 || stack->exit != 1 || stack->height >= stack->widths)
-		error();
+		no_map_error();
 	flood_fill(stack, stack->mapdata, stack->ppos_x, stack->ppos_y);
 }
 
@@ -69,7 +69,7 @@ int	gnl (t_list *stack, char **argv)
 
 	fdmap = open(argv[1], O_RDONLY);
 	if (fdmap == -1)
-		error();
+		open_error();
 	joined = ft_strdup(get_next_line(fdmap));
 	if (!joined)
 		error();
@@ -77,7 +77,7 @@ int	gnl (t_list *stack, char **argv)
 	while (gn)
 	{
 		if (gn[0] == '\n')
-			error();
+			no_map_error();
 		temp = ft_strjoin(joined, "\n");
 		free(joined);
 		joined = ft_strjoin(temp, gn);

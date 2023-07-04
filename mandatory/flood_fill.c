@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:49:34 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/03 18:43:23 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:23:43 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	check_flood(char **str, t_list *maf, t_list *stack)
 		{
 			if ((str[i][j] == 'P' || str[i][j] == 'C'
 				|| maf->coll != stack->coll) && maf->exit)
-			{
-				write(2, "Unplayable map\n", 15);
-				error();
-			}
+				unplayable_error();
 		}
 	}
 }

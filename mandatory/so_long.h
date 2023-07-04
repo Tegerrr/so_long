@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:46:23 by mac               #+#    #+#             */
-/*   Updated: 2023/07/03 20:08:32 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:17:25 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@
 # include <math.h>
 # include "get_next_line.h"
 # include "mlx/mlx.h"
+
+# define WALL "./images/AnyConv.com__SUPPORT_6A.xpm"
+# define TILE "./images/AnyConv.com__TILE_3C.xpm"
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		img_height;
+	int		img_widths;
+}	t_mlx;
 
 typedef struct s_list
 {
@@ -46,5 +61,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	flood_fill(t_list *stack, char **tab, int x, int y);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	go_game(void *mlx);
+int		key_hook(int keycode, t_mlx *mlx);
+void	open_error(void);
+void	ber_error(void);
+void	unplayable_error(void);
+void	no_map_error(void);
+void	argc_error(void);
+int		krest(void);
+t_mlx	*game(t_mlx *mlx);
 
 #endif

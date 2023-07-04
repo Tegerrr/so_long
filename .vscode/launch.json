@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "Debug",
 			"program": "${workspaceFolder}/so_long",
-			"args": ["mandatory/map.ber"],
+			"args": ["map.berr"],
 			"cwd": "${workspaceFolder}"
 		}
 	]
