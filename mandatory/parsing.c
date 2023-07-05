@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:03:40 by mac               #+#    #+#             */
-/*   Updated: 2023/07/04 23:06:39 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:58:53 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ int	gnl (t_list *stack, char **argv)
 	stack->mapdata = ft_split(joined, '\n');
 	free(joined);
 	val(stack, -1, -1);
+	close(fdmap);
 	return (1);
 }

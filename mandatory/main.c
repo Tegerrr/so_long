@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:45:47 by mac               #+#    #+#             */
-/*   Updated: 2023/07/04 21:46:15 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:27:20 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	main(int argc, char **argv)
 		argc_error();
 	if (gnl(&stack, argv))
 		printf("OK\n");
-	game(&mlx);
+	game(&mlx, &stack);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:46:23 by mac               #+#    #+#             */
-/*   Updated: 2023/07/04 22:17:25 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:03:24 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 # define WALL "./images/AnyConv.com__SUPPORT_6A.xpm"
 # define TILE "./images/AnyConv.com__TILE_3C.xpm"
+# define MC "./images/AnyConv.com__Skeleton_2.xpm"
+# define EXIT ""
+# define COIN ""
 
 typedef struct s_mlx
 {
@@ -31,8 +34,8 @@ typedef struct s_mlx
 	char	*addr;
 	int		bpp;
 	int		line_len;
-	int		img_height;
-	int		img_widths;
+	int		img_hei;
+	int		img_wid;
 }	t_mlx;
 
 typedef struct s_list
@@ -68,6 +71,6 @@ void	unplayable_error(void);
 void	no_map_error(void);
 void	argc_error(void);
 int		krest(void);
-t_mlx	*game(t_mlx *mlx);
+t_mlx	*game(t_mlx *mlx, t_list *stack);
 
 #endif
