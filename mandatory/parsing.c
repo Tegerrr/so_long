@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:03:40 by mac               #+#    #+#             */
-/*   Updated: 2023/07/05 17:58:53 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:05:51 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	val(t_list *stack, int i, int j)
 					&& stack->mapdata[i][j] != '1')
 					no_map_error();
 		}
+		stack->height++;
 	}
 	stack->widths = ft_strlen(stack->mapdata[0]);
 	if (stack->player != 1 || stack->coll < 1 || stack->exit != 1 || stack->height >= stack->widths)
@@ -70,23 +71,26 @@ int	gnl (t_list *stack, char **argv)
 	fdmap = open(argv[1], O_RDONLY);
 	if (fdmap == -1)
 		open_error();
-	joined = ft_strdup(get_next_line(fdmap));
+	gn = get_next_line(fdmap);
+	joined = ft_strdup(gn);
 	if (!joined)
 		error();
+	free(gn);
 	gn = get_next_line(fdmap);
 	while (gn)
 	{
-		if (gn[0] == '\n')
-			no_map_error();
 		temp = ft_strjoin(joined, "\n");
 		free(joined);
 		joined = ft_strjoin(temp, gn);
 		free(temp);
-		stack->height++;
+		free(gn);
 		gn = get_next_line(fdmap);
 	}
-	stack->mapdata = ft_split(joined, '\n');
+	free(gn);
+	temp = ft_strtrim(joined, "\n");
 	free(joined);
+	stack->mapdata = ft_split(temp, '\n');
+	free(temp);
 	val(stack, -1, -1);
 	close(fdmap);
 	return (1);

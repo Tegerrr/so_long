@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:45:47 by mac               #+#    #+#             */
-/*   Updated: 2023/07/05 13:27:20 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:06:49 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	ber_check(char *str, t_list *stack)
 	stack->item = 0;
 	stack->player = 0;
 	stack->score = 0;
-	stack->height = 1;
+	stack->height = 0;
+	stack->cur_score = 0;
 	while (size--)
 	{
 		if (ft_strncmp(str, ".ber\0", 5) == 0)
@@ -46,8 +47,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || !ber_check(argv[1], &stack))
 		argc_error();
-	if (gnl(&stack, argv))
-		printf("OK\n");
+	gnl(&stack, argv);
 	game(&mlx, &stack);
 	return (0);
 }

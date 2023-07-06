@@ -10,7 +10,8 @@ SRCS =	mandatory/parsing.c\
 		mandatory/flood_fill.c\
 		mandatory/hookah.c\
 		mandatory/error.c\
-		mandatory/game.c
+		mandatory/game.c\
+		mandatory/utils_1.c
 
 SRCS_B =	
 

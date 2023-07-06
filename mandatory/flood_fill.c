@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:49:34 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/05 18:51:56 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:05:16 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ void	fill(t_list *stack, t_list *maf, int x, int y)
 		maf->coll++;
 	if (maf->mapdata[x][y] == 'E')
 		maf->exit = 1;
+	if (maf->mapdata[x][y] == 'P')
+	{
+		stack->ppos_x = x;
+		stack->ppos_y = y;
+	}
 	maf->mapdata[x][y] = 'f';
 	fill(stack, maf, x - 1, y);
 	fill(stack, maf, x, y - 1);

@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:46:23 by mac               #+#    #+#             */
-/*   Updated: 2023/07/05 20:03:24 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:15:31 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,26 @@
 # include "get_next_line.h"
 # include "mlx/mlx.h"
 
-# define WALL "./images/AnyConv.com__SUPPORT_6A.xpm"
+# define WALL "./images/AnyConv.com__BRICK_2B.xpm"
 # define TILE "./images/AnyConv.com__TILE_3C.xpm"
-# define MC "./images/AnyConv.com__Skeleton_2.xpm"
-# define EXIT ""
-# define COIN ""
+# define MC "./images/AnyConv.com__pixil-frame-0.xpm"
+# define EXIT "./images/AnyConv.com__Portal_jan_2.xpm"
+# define COIN "./images/AnyConv.com__scroll_jan.xpm"
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
 	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
 	int		img_hei;
 	int		img_wid;
 }	t_mlx;
 
 typedef struct s_list
 {
+	void	*mlx;
+	void	*win;
+	void	*img;
 	int		height;
 	int		widths;
 	int		ppos_x;
@@ -64,7 +64,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	flood_fill(t_list *stack, char **tab, int x, int y);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	go_game(void *mlx);
-int		key_hook(int keycode, t_mlx *mlx);
+int		key_hook(int keycode, t_list *stack);
 void	open_error(void);
 void	ber_error(void);
 void	unplayable_error(void);
@@ -72,5 +72,7 @@ void	no_map_error(void);
 void	argc_error(void);
 int		krest(void);
 t_mlx	*game(t_mlx *mlx, t_list *stack);
+void	ft_putnbr_fd(int n, int fd);
+char	*ft_strtrim(char const *s, char const *set);
 
 #endif
