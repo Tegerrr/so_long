@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:46:23 by mac               #+#    #+#             */
-/*   Updated: 2023/07/07 14:06:32 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:05:55 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -25,6 +25,7 @@
 # define MC "./images/AnyConv.com__pixil-frame-0.xpm"
 # define EXIT "./images/AnyConv.com__BIG_portal_jan.xpm"
 # define COIN "./images/AnyConv.com__scroll_jan.xpm"
+# define ENEMY "./images/AnyConv.com__Enemy_tile.xpm"
 
 typedef struct s_mlx
 {
@@ -53,6 +54,9 @@ typedef struct s_list
 	int		exit;
 	int		item;
 	int		coll;
+	int		enemy;
+	int		epos_x;
+	int		epos_y;
 }	t_list;
 
 void	gnl(t_list *stack, char **argv);
@@ -73,6 +77,7 @@ int		krest(void);
 t_mlx	*game(t_mlx *mlx, t_list *stack);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_strtrim(char const *s, char const *set);
-void	map_fix(t_list *stack, int i, int j);
+void	map_fix(t_list *stack, int i, int j, int y);
+void	enemy_move(t_list *stack);
 
 #endif

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:03:40 by mac               #+#    #+#             */
-/*   Updated: 2023/07/07 21:02:52 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:14:07 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	check_w(char *str)
 {
@@ -32,13 +32,15 @@ void	val_1(t_list *stack, int i, int j)
 		stack->ppos_y = i;
 		stack->ppos_x = j;
 	}
+	if (stack->mapdata[i][j] == 'Q')
+		stack->enemy++;
 	if (stack->mapdata[i][j] == 'C')
 		stack->coll++;
 	if (stack->mapdata[i][j] == 'E')
 		stack->exit++;
 	if (stack->mapdata[i][j] != 'E' && stack->mapdata[i][j] != 'P'
 		&& stack->mapdata[i][j] != 'C' && stack->mapdata[i][j] != '0'
-			&& stack->mapdata[i][j] != '1')
+			&& stack->mapdata[i][j] != '1' && stack->mapdata[i][j] != 'Q')
 		no_map_error();
 }
 

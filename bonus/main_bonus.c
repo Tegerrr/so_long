@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:45:47 by mac               #+#    #+#             */
-/*   Updated: 2023/07/07 12:53:21 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/08 13:16:53 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	ber_check(char *str, t_list *stack)
 {
@@ -23,6 +23,7 @@ int	ber_check(char *str, t_list *stack)
 	stack->player = 0;
 	stack->height = 0;
 	stack->cur_score = 0;
+	stack->enemy = 0;
 	while (size--)
 	{
 		if (ft_strncmp(str, ".ber\0", 5) == 0)

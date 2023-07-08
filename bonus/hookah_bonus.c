@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hookah.c                                           :+:      :+:    :+:   */
+/*   hookah_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:01:51 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/07 19:22:15 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:24:31 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	texture_change(t_list *stack, int y, int x)
 {
@@ -40,13 +40,17 @@ void	move(t_list *stack, int x, int y)
 	if (stack->mapdata[y][x] == 'E')
 		exit(EXIT_SUCCESS);
 	stack->mapdata[y][x] = 'P';
+	if (stack->enemy)
 	if (stack->cur_score % 50 == 0)
 	{
 		mlx_clear_window(stack->mlx, stack->win);
-		map_fix(stack, 0, 0);
+		map_fix(stack, -1, -1, 0);
 	}
 	stack->ppos_x = x;
 	stack->ppos_y = y;
+	enemy_move(stack);
+	if (x == stack->epos_x && y == stack->epos_y)
+		exit(EXIT_FAILURE);
 }
 
 int	key_hook(int keycode, t_list *stack)
@@ -62,9 +66,4 @@ int	key_hook(int keycode, t_list *stack)
 	else if (keycode == 2 || keycode == 124)
 		move(stack, stack->ppos_x + 1, stack->ppos_y);
 	return (0);
-}
-
-int	krest(void)
-{
-	exit(EXIT_SUCCESS);
 }

@@ -1,5 +1,5 @@
 NAME = so_long
-NAME_B = checker
+NAME_B = so_long_bonus
 
 SRCS =	mandatory/parsing.c\
 		mandatory/main.c\
@@ -13,10 +13,21 @@ SRCS =	mandatory/parsing.c\
 		mandatory/game.c\
 		mandatory/utils_1.c
 
-SRCS_B =	
+SRCS_B =	bonus/parsing_bonus.c\
+			bonus/main_bonus.c\
+			bonus/get_next_line.c\
+			bonus/get_next_line_utils.c\
+			bonus/utils_bonus.c\
+			bonus/split_bonus.c\
+			bonus/flood_fill_bonus.c\
+			bonus/hookah_bonus.c\
+			bonus/error_bonus.c\
+			bonus/game_bonus.c\
+			bonus/utils_1_bonus.c\
+			bonus/enemy_hook_bonus.c
 
 HEADER = mandatory/so_long.h
-HEADER_B = bonus/push_swap_bonus.h
+HEADER_B = bonus/so_long_bonus.h
 
 OBJ = $(patsubst %.c, %.o, $(SRCS))
 OBJ_B = $(patsubst %.c, %.o, $(SRCS_B))
@@ -24,7 +35,7 @@ OBJ_B = $(patsubst %.c, %.o, $(SRCS_B))
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g -I mlx
-MLXFLAG = -L /usr/local/bin -Lmandatory/mlx -lmlx -framework OpenGL -framework AppKit
+MLXFLAG = -L /usr/local/bin -Lmlx -lmlx -framework OpenGL -framework AppKit
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(HEADER)
