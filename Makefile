@@ -15,8 +15,8 @@ SRCS =	mandatory/parsing.c\
 
 SRCS_B =	bonus/parsing_bonus.c\
 			bonus/main_bonus.c\
-			bonus/get_next_line.c\
-			bonus/get_next_line_utils.c\
+			bonus/get_next_line_bonus.c\
+			bonus/get_next_line_utils_bonus.c\
 			bonus/utils_bonus.c\
 			bonus/split_bonus.c\
 			bonus/flood_fill_bonus.c\

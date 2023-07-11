@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 21:43:48 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/07 13:52:31 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:38:22 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_mlx	*game(t_mlx *mlx, t_list *stack)
 	stack->height *= 64;
 	stack->widths *= 64;
 	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, stack->widths, stack->height, "Chlen");
+	mlx->win = mlx_new_window(mlx->mlx, stack->widths, stack->height, "Chren");
 	stack->mlx = mlx->mlx;
 	stack->win = mlx->win;
 	stack->mlx = mlx;

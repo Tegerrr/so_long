@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 21:43:48 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/08 19:33:49 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:38:08 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	map_fix_1(char sign, t_list *stack, int x, int y)
 {
 	if (sign == '1')
-			stack->img = mlx_xpm_file_to_image(stack->mlx, WALL,
-				&stack->img_wid, &stack->img_hei);
+		stack->img = mlx_xpm_file_to_image(stack->mlx, WALL,
+			&stack->img_wid, &stack->img_hei);
 	else if (sign == 'P')
 	{
 		mlx_put_image_to_window(stack->mlx, stack->win,
@@ -75,13 +75,13 @@ t_mlx	*game(t_mlx *mlx, t_list *stack)
 	stack->epos_y = 0;
 	stack->epos_x = -1;
 	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, stack->widths, stack->height, "Chlen");
+	mlx->win = mlx_new_window(mlx->mlx, stack->widths, stack->height, "Chren");
 	stack->mlx = mlx->mlx;
 	stack->win = mlx->win;
-	stack->mlx = mlx;
 	map_fix(stack, -1, -1, 0);
 	mlx_hook(mlx->win, 17, 0L, krest, &mlx);
 	mlx_key_hook(mlx->win, key_hook, stack);
+	mlx_string_put(stack->mlx, stack->win, 14, 32, 0x0000FF00, "Moves made: 0");
 	mlx_loop(mlx->mlx);
 	return (mlx);
 }

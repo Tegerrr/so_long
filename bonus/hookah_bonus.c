@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:01:51 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/08 18:24:31 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/11 22:00:58 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 void	texture_change(t_list *stack, int y, int x)
 {
-	int	img_hei;
-	int	img_wid;
+	int		img_hei;
+	int		img_wid;
+	char	*str;
+	int		w;
 
+	w = -1;
+	str = ft_itoa(++stack->cur_score);
+	stack->img = mlx_xpm_file_to_image(stack->mlx, WALL, &img_wid, &img_hei);
+	while (w++ != 4)
+		mlx_put_image_to_window(stack->mlx, stack->win, stack->img, w * 64, 0);
+	mlx_string_put(stack->mlx, stack->win, 14, 32, 0x0000FF00, "Moves made: ");
+	mlx_string_put(stack->mlx, stack->win, 100, 32, 0x0000FF00, str);
+	free(str);
 	stack->img = mlx_xpm_file_to_image(stack->mlx, TILE, &img_wid, &img_hei);
 	mlx_put_image_to_window(stack->mlx, stack->win, stack->img, x * 64, y * 64);
 	mlx_put_image_to_window(stack->mlx, stack->win, stack->img,
@@ -32,15 +42,14 @@ void	move(t_list *stack, int x, int y)
 		return ;
 	if (stack->mapdata[y][x] != 'E')
 		texture_change(stack, y, x);
-	ft_putnbr_fd(++stack->cur_score, 1);
-	write (1, "\n", 1);
 	if (stack->mapdata[y][x] == 'C')
 		stack->coll--;
 	stack->mapdata[stack->ppos_y][stack->ppos_x] = '0';
 	if (stack->mapdata[y][x] == 'E')
 		exit(EXIT_SUCCESS);
+	if (stack->mapdata[y][x] == 'Q')
+		exit(EXIT_FAILURE);
 	stack->mapdata[y][x] = 'P';
-	if (stack->enemy)
 	if (stack->cur_score % 50 == 0)
 	{
 		mlx_clear_window(stack->mlx, stack->win);
@@ -48,7 +57,8 @@ void	move(t_list *stack, int x, int y)
 	}
 	stack->ppos_x = x;
 	stack->ppos_y = y;
-	enemy_move(stack);
+	if (stack->enemy)
+		enemy_move(stack);
 	if (x == stack->epos_x && y == stack->epos_y)
 		exit(EXIT_FAILURE);
 }

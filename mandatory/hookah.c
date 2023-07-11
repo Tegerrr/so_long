@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:01:51 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/07 19:22:15 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:39:04 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	move(t_list *stack, int x, int y)
 	if (stack->cur_score % 50 == 0)
 	{
 		mlx_clear_window(stack->mlx, stack->win);
-		map_fix(stack, 0, 0);
+		map_fix(stack, -1, -1);
 	}
 	stack->ppos_x = x;
 	stack->ppos_y = y;

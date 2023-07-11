@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:23:32 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/08 19:32:02 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/11 22:11:27 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,49 +32,59 @@ void	e_move(t_list *stack, int y, int x)
 		return ;
 	if (stack->mapdata[y][x] == 'P')
 		exit(EXIT_FAILURE);
-	printf("%d\n %d\n", stack->epos_y, stack->epos_x);
+	// printf("%d\n %d\n", stack->epos_y, stack->epos_x);
 	stack->mapdata[y][x] = 'Q';
 	stack->mapdata[stack->epos_y][stack->epos_x] = '0';
 	e_texture_change(stack, y, x);
 	
 }
 
-void	find_enemy(t_list *stack, int y, int x)
+char	**find_enemy(char **str, t_list *stack, int y, int x)
 {
-	while (stack->mapdata[y])
+	while (str[y])
 	{
-		x = stack->epos_x;
-		while (stack->mapdata[y][++x])
+		x = 0;
+		while (str[y][++x])
 		{
-			if (stack->mapdata[y][x] == 'Q')
+			if (str[y][x] == 'Q')
 			{
+				str[stack->epos_y][stack->epos_x] = '0';
 				stack->epos_y = y;
 				stack->epos_x = x;
-				return ;
+				str[y][x] = '0';
+				return (str);
 			}
 		}
 		y++;
 	}
+	return (str);
 }
 
 void	enemy_move(t_list *stack)
 {
-	int	e_count;
-	int i = 0;
-	while (stack->mapdata[i])
-		printf("%s\n", stack->mapdata[i++]);
+	char	**str;
+	int		e_count;
+	int		i;
+	
+	stack->epos_y = 0;
+	stack->epos_x = -1;
+	i = 0;
+	str = double_cp(stack->mapdata, stack);
 	e_count = stack->enemy;
 	while (e_count--)
 	{
-		stack->epos_x += 1;
-		find_enemy(stack, stack->epos_y, stack->epos_x);
-		if (stack->cur_score % 3 == 0)
-			e_move(stack, stack->epos_y, stack->epos_x - 1);
+		str = find_enemy(str, stack, stack->epos_y, stack->epos_x);
+		if (stack->cur_score % 7 == 0)
+			e_move(stack, stack->epos_y - 1, stack->epos_x);
 		else if (stack->cur_score % 5 == 0)
-			e_move(stack, stack->epos_y, stack->epos_x + 1);
-		// else if (stack->cur_score % 7 == 0)
-		// 	e_move(stack, stack->epos_y - 1, stack->epos_x);
-		else if (stack->cur_score % 4 == 0)
 			e_move(stack, stack->epos_y + 1, stack->epos_x);
+		else if (stack->cur_score % 2 == 0)
+			e_move(stack, stack->epos_y, stack->epos_x + 1);
+		else
+			e_move(stack, stack->epos_y, stack->epos_x - 1);
 	}
+	i = 0;
+	while(str[i])
+		free(str[i++]);
+	free(str);
 }

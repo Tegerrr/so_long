@@ -6,37 +6,55 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:54:09 by mac               #+#    #+#             */
-/*   Updated: 2023/07/07 19:30:29 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:19:53 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	putnum(char c, int fd)
+static char	*nbr(int n, char *s, int n1)
 {
-	write(fd, &c, 1);
-}
+	int	i;
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
-	{
-		putnum('-', fd);
-		putnum('2', fd);
-		n = 147483648;
-	}
+	i = n1;
 	if (n < 0)
 	{
-		putnum('-', fd);
+		s[0] = '-';
 		n *= -1;
 	}
-	if (n / 10 > 0)
+	s[i] = '\0';
+	i--;
+	if (n == 0)
 	{
-		ft_putnbr_fd(n / 10, fd);
-		putnum((n % 10) + 48, fd);
+		s[0] = '0';
+		return (s);
 	}
-	if (n <= 9)
-		putnum(n + 48, fd);
+	while (i >= 0 && n > 0)
+	{
+		s[i] = (n % 10) + 48;
+		n = n / 10;
+		i--;
+	}
+	return (s);
+}
+
+char	*ft_itoa(int n1)
+{
+	unsigned int	n;
+	char			*s;
+
+	if (n1 == 0)
+		return(0);
+	if (n1 == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n1 == 2147483647)
+		return (ft_strdup("2147483647"));
+	n = ft_numlen((unsigned int)n1);
+	s = malloc(n * sizeof(char) + 1);
+	if (s == NULL)
+		return (NULL);
+	s = nbr(n1, s, n);
+	return (s);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
