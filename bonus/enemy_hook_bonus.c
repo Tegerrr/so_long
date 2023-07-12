@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:23:32 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/11 22:11:27 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:03:04 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ void	e_move(t_list *stack, int y, int x)
 		return ;
 	if (stack->mapdata[y][x] == 'P')
 		exit(EXIT_FAILURE);
-	// printf("%d\n %d\n", stack->epos_y, stack->epos_x);
 	stack->mapdata[y][x] = 'Q';
 	stack->mapdata[stack->epos_y][stack->epos_x] = '0';
 	e_texture_change(stack, y, x);
-	
 }
 
 char	**find_enemy(char **str, t_list *stack, int y, int x)
@@ -65,7 +63,7 @@ void	enemy_move(t_list *stack)
 	char	**str;
 	int		e_count;
 	int		i;
-	
+
 	stack->epos_y = 0;
 	stack->epos_x = -1;
 	i = 0;
@@ -84,7 +82,7 @@ void	enemy_move(t_list *stack)
 			e_move(stack, stack->epos_y, stack->epos_x - 1);
 	}
 	i = 0;
-	while(str[i])
+	while (str[i])
 		free(str[i++]);
 	free(str);
 }
