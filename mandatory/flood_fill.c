@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:49:34 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/07 21:04:59 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:58:40 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_flood(char **str, t_list *maf, t_list *stack)
 		while (str[i][++j])
 		{
 			if ((str[i][j] == 'P' || str[i][j] == 'C'
-				|| maf->coll != stack->coll) && maf->exit != 1)
+				|| maf->coll != stack->coll) || maf->exit != 1)
 				unplayable_error();
 		}
 	}
@@ -56,14 +56,14 @@ void	check_flood(char **str, t_list *maf, t_list *stack)
 
 void	fill(t_list *stack, t_list *maf, int y, int x)
 {
+	if (maf->mapdata[x][y] == 'E')
+		maf->exit = 1;
 	if ((x < 0 || x >= stack->height || y < 0 || y >= stack->widths)
 		|| (maf->mapdata[x][y] != 'C' && maf->mapdata[x][y] != 'P'
 			&& maf->mapdata[x][y] != '0'))
 		return ;
 	if (maf->mapdata[x][y] == 'C')
 		maf->coll++;
-	if (maf->mapdata[x][y] == 'E')
-		maf->exit = 1;
 	maf->mapdata[x][y] = 'f';
 	fill(stack, maf, y - 1, x);
 	fill(stack, maf, y, x - 1);

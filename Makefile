@@ -51,7 +51,7 @@ clean :
 	rm -f $(OBJ) $(OBJ_B)
 
 fclean : clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_B)
 
 re : fclean all
 
