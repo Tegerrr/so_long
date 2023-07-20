@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:46:23 by mac               #+#    #+#             */
-/*   Updated: 2023/07/12 13:26:55 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:35:20 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include "get_next_line_bonus.h"
-# include "/Users/timelkon/Desktop/so_long_git/mlx/mlx.h"
+# include "../mlx/mlx.h"
 
 # define WALL "./images/AnyConv.com__BRICK_2B.xpm"
 # define TILE "./images/AnyConv.com__TILE_3C.xpm"
@@ -59,7 +59,7 @@ typedef struct s_list
 	int		epos_y;
 }	t_list;
 
-void	gnl(t_list *stack, char **argv);
+void	gnl(t_list *stack, char *gn, int fdmap);
 void	error(void);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s1, char c);
@@ -81,5 +81,7 @@ void	enemy_move(t_list *stack);
 char	*ft_itoa(int n1);
 int		ft_numlen(int n);
 char	**double_cp(char **tab, t_list *stack);
+void	big_error(void);
+void	you_died(void);
 
 #endif

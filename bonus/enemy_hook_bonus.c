@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:23:32 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/12 13:03:04 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:35:48 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	e_move(t_list *stack, int y, int x)
 		|| stack->mapdata[y][x] == 'C' || stack->mapdata[y][x] == 'Q')
 		return ;
 	if (stack->mapdata[y][x] == 'P')
-		exit(EXIT_FAILURE);
+		you_died();
 	stack->mapdata[y][x] = 'Q';
 	stack->mapdata[stack->epos_y][stack->epos_x] = '0';
 	e_texture_change(stack, y, x);

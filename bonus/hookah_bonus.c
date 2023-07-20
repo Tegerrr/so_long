@@ -6,11 +6,17 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:01:51 by timelkon          #+#    #+#             */
-/*   Updated: 2023/07/12 13:26:12 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:46:55 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	you_died(void)
+{
+	write(1, "you died\n", 9);
+	exit(EXIT_SUCCESS);
+}
 
 void	texture_change(t_list *stack, int y, int x)
 {
@@ -47,7 +53,7 @@ void	move(t_list *stack, int x, int y)
 	if (stack->mapdata[y][x] == 'E')
 		exit(EXIT_SUCCESS);
 	if (stack->mapdata[y][x] == 'Q')
-		exit(EXIT_FAILURE);
+		you_died();
 	stack->mapdata[y][x] = 'P';
 	if (stack->cur_score % 50 == 0)
 	{

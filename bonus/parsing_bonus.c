@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:03:40 by mac               #+#    #+#             */
-/*   Updated: 2023/07/08 18:14:07 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:49:17 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	val(t_list *stack, int i, int j)
 	if (stack->player != 1 || stack->coll < 1
 		|| stack->exit != 1)
 		no_map_error();
+	if (stack->height > 50 || stack->widths > 50)
+		big_error();
 	flood_fill(stack, stack->mapdata, stack->ppos_x, stack->ppos_y);
 }
 
@@ -89,17 +91,11 @@ void	gnl_1(t_list *stack, char *temp, char *joined, int fdmap)
 	close(fdmap);
 }
 
-void	gnl(t_list *stack, char **argv)
+void	gnl(t_list *stack, char *gn, int fdmap)
 {
 	char	*joined;
 	char	*temp;
-	char	*gn;
-	int		fdmap;
 
-	fdmap = open(argv[1], O_RDONLY);
-	if (fdmap == -1)
-		open_error();
-	gn = get_next_line(fdmap);
 	joined = ft_strdup(gn);
 	if (!joined)
 		error();

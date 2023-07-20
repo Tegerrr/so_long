@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:46:23 by mac               #+#    #+#             */
-/*   Updated: 2023/07/07 14:06:32 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:53:42 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include "get_next_line.h"
-# include "/Users/timelkon/Desktop/so_long_git/mlx/mlx.h"
+# include "../mlx/mlx.h"
 
 # define WALL "./images/AnyConv.com__BRICK_2B.xpm"
 # define TILE "./images/AnyConv.com__TILE_3C.xpm"
@@ -55,7 +55,7 @@ typedef struct s_list
 	int		coll;
 }	t_list;
 
-void	gnl(t_list *stack, char **argv);
+void	gnl(t_list *stack, char *gn, int fdmap);
 void	error(void);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s1, char c);
@@ -74,5 +74,6 @@ t_mlx	*game(t_mlx *mlx, t_list *stack);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_strtrim(char const *s, char const *set);
 void	map_fix(t_list *stack, int i, int j);
+void	big_error(void);
 
 #endif
